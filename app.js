@@ -68,7 +68,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
+        secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -163,7 +163,6 @@ app.all("*", (req, res, next) => {
 // Error handler
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    // res.status(statusCode).send(message);
     if (!err.message) err.message = "Something Went Wrong";
     res.status(statusCode).render("error", { err });
 })
